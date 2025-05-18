@@ -6,3 +6,6 @@ def print_hi(name):
 
 if __name__ == '__main__':
     print_hi('PyCharm')
+    #file = open("textfile.css", "w+")
+    #file.write("This is the content of the file.")
+    #file.close()
