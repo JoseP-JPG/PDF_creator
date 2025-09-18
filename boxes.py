@@ -42,10 +42,10 @@ class dragBox:
         print(self.posY)
 
 
-if __name__ == '__main__':
-    drag = draggableArea()
-    print(drag)
-    drag.newBox(15, 15)
-    drag.boxes[0].moveSelf(35, 23)
-    drag.boxes[0].moveSelf(305, -3)
+#if __name__ == '__main__':
+#    drag = draggableArea()
+#    print(drag)
+#    drag.newBox(15, 15)
+#    drag.boxes[0].moveSelf(35, 23)
+#    drag.boxes[0].moveSelf(305, -3)
 
