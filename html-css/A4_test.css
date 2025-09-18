@@ -1,12 +1,11 @@
 /* pulled from https://github.com/kykungz/html-a4-paper */
-
 :root {
   --bleeding: 0.5cm;
   --margin: 1cm;
 }
 
 @page {
-  size: A4;
+  /*size: A4;*/
   margin: 0;
 }
 * {
@@ -24,8 +23,8 @@ body {
 .page {
   display: inline-block;
   position: relative;
-  height: 297mm;
-  width: 210mm;
+  height: 210mm;
+  width: 297mm;
   margin: 2em auto;
   padding: calc(var(--bleeding) + var(--margin));
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
@@ -35,22 +34,25 @@ body {
 .text1 {
   position: absolute;
   display: inline-block;
-  overflow: hidden;
-  top: -5mm;
-  left: 0mm;
+  top: 50%;
+  left: 5%;
+  margin: 5%;
+  /*width: 40%; height: 20%;*/
+  border: 5px solid red;
 
 }
 
 .text2 {
   position: absolute;
   display: inline-block;
-  overflow: hidden;
-  height: fit-content;
-  bottom: -5mm;
-  right: 0mm;
+  overflow: auto;
+  bottom: 50%;
+  right: 0%;
+  /*width: 5%; height: 5%;*/
+  border: 5px solid blue;
 }
 
-@media screen {
+/*@media screen {
   .page::after {
     position: absolute;
     content: '';
@@ -63,7 +65,7 @@ body {
     pointer-events: none;
     z-index: 9999;
   }
-}
+}*/
 
 @media print {
   .page {
