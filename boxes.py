@@ -23,27 +23,7 @@ class dragBox:
         self.parentDrag = area
         self.text = ' '
         self.font = ' '
-        self.size = ' ' 
-
-
-    def moveSelf(self, x, y):
-        limitX = self.parentDrag.sizeX
-        limitY = self.parentDrag.sizeY
-        if x > limitX:
-            self.posX = limitX
-        elif x < 0:
-            self.posX = 0
-        else:
-            self.posX = x
-
-        if y > limitY:
-            self.posY = limitY
-        elif y < 0:
-            self.posY = 0
-        else:
-            self.posY = y
-        print(self.posX)
-        print(self.posY)
+        self.size = ' '
 
     def __str__(self):
         return f"{self.name}"
