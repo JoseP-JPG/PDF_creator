@@ -1,29 +1,29 @@
 class draggableArea:
     boxes = []
 
-    def __init__(self, x, y):
-        self.sizeX = x
-        self.sizeY = y
+    def __init__(self, name):
+        self.name = name
 
-    def newBox(self, x, y):
-        box = dragBox(x, y, self)
+    def newBox(self, x, y, name, oX, oY,):
+        box = dragBox(x, y, name, oX, oY, self)
         self.boxes.append(box)
-        print(f"I have a {box.sizeX}x{box.sizeY} box, the measurements are percentage.")
 
-    def __str__(self):
-        return f"I am a {self.sizeX}x{self.sizeY} area."
+
 
 
 class dragBox:
 
-    def __init__(self, x, y, posX, posY, oX, oY, area):
-        self.sizeX = x
-        self.sizeY = y
+    def __init__(self, posX, posY, name,oX, oY, area):
+
         self.posX = posX
         self.posY = posY
+        self.name = name
         self.orientationX = oX
         self.orientationY = oY
         self.parentDrag = area
+        self.text = ' '
+        self.font = ' '
+        self.size = ' ' 
 
 
     def moveSelf(self, x, y):
@@ -44,6 +44,9 @@ class dragBox:
             self.posY = y
         print(self.posX)
         print(self.posY)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 #if __name__ == '__main__':

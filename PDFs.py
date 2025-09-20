@@ -2,6 +2,9 @@ import tkinter
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import Combobox
+from tkinter import Tk, font
+
+from boxes import draggableArea
 
 
 class pdfMaker:
@@ -10,7 +13,15 @@ class pdfMaker:
         self.paper_measure = []
         self.working_measure = ' '
         self.area = ''
-        self.paper_measurements()
+
+        self.html_component1 = ' '
+        self.html_component2 = ' '
+        self.html_component3 = ' '
+        self.css_component1 = ' '
+        self.css_component2 = ' '
+        self.css_component3 = ' '
+
+        self.open_screen()
 
     def html_maker(self):
         print('html maker')
@@ -18,6 +29,41 @@ class pdfMaker:
 
     def css_maker(self):
         print('css maker')
+
+    def main_screen(self):
+        print('main window')
+        mai = tkinter.Tk()
+
+        pw1 = PanedWindow(mai)
+        pw1.grid(column=0, row=0, columnspan=2, rowspan=2)
+        button_newbox = ttk.Button(mai, text='New Box')
+        button_newbox.grid(row=0, column=0, columnspan=2)
+        button_removebox = ttk.Button(mai, text='Remove Box')
+        button_removebox.grid(row=1, column=0, columnspan=2)
+
+        def box_list(event):
+            print('box chosen')
+
+        pw2 = PanedWindow(mai)
+        pw2.grid(column=0, row=2, columnspan=2, rowspan=5)
+        pw3 = PanedWindow(mai)
+        pw3.grid(column=2, row=0, columnspan=8, rowspan=2)
+        pw4 = PanedWindow(mai)
+        pw4.grid(column=2, row=2, columnspan=4, rowspan=5)
+        pw5 = PanedWindow(mai)
+        pw5.grid(column=5, row=2, columnspan=4, rowspan=5)
+
+        mai.mainloop()
+
+    def newbox_screen(self):
+        print('new box screen')
+
+    def save_screen(self):
+        print('save screen')
+
+    def open_screen(self):
+        print('open screen')
+        self.paper_measurements()
 
     def paper_measurements(self):
         print('paper measurements')
@@ -29,20 +75,26 @@ class pdfMaker:
         def pselect(event):
             selected_item = combo_box.get()
             label.config(text="Selected Item: " + selected_item)
-            #self.paper_measure = combo_box.get()
-            #pap.quit()
-            #self.working_measurements()
 
         def pbutton(event):
+
             selected_item1 = combo_box.get()
             selected_item2 = e1.get()
             selected_item3 = e2.get()
-            label.config(text="Selected Item: " + selected_item1)
-            self.paper_measure.append(selected_item2)
-            self.paper_measure.append(selected_item3)
-            print(self.paper_measure)
-            pap.quit()
-            self.working_measurements()
+            try:
+                label.config(text="Selected Item: " + selected_item1)
+
+                self.paper_measure.append(selected_item1)
+                self.paper_measure.append(int(selected_item2))
+                self.paper_measure.append(int(selected_item3))
+                self.area = draggableArea(self.paper_measure[1], self.paper_measure[2])
+                pap.destroy()
+                #print(self.paper_measure)
+                self.working_measurements()
+            except:
+                self.paper_measure.clear()
+                label.config(text="""The measurements were not numbers.
+                Selected Item: """ + selected_item1)
 
         label = tkinter.Label(pap, text="Selected Item: ")
         label.grid(row=1, column=0, columnspan=2)
@@ -57,13 +109,15 @@ class pdfMaker:
         Label(pap, text='Width').grid(row=3)
         Label(pap, text='Height').grid(row=4)
         e1 = Entry(pap)
+        #e1.insert(0, "test")
+        #e1.configure(state="disabled")
         e1.grid(row=3, column=1)
         e2 = Entry(pap)
         e2.grid(row=4, column=1)
 
-        button = ttk.Button(pap, text='Save', width=25)
-        button.grid(row=5, column=0, columnspan=2)
-        button.bind("<Button-1>", pbutton)
+        button_savemeasurements = ttk.Button(pap, text='Save', width=25)
+        button_savemeasurements.grid(row=5, column=0, columnspan=2)
+        button_savemeasurements.bind("<Button-1>", pbutton)
 
         pap.title("Measurements")
         pap.mainloop()
@@ -72,14 +126,43 @@ class pdfMaker:
         print('working measurements')
         mea = tkinter.Tk()
         wmeasure = ['mm', 'px', '%']
-        w = tkinter.Label(mea, text='what are your measurements? (mm, px, %)')
+        w = tkinter.Label(mea, text='what are your working measurements? (mm, px, %)')
         w.pack()
+
+        '''
+        m2 = PanedWindow(mea, orient=HORIZONTAL)
+
+        def wbuttonm(event):
+            ff = ws.get()-1
+            ws.set(ff)
+            print(ws.get())
+
+        button2 = ttk.Button(mea, text='<', width=25)
+        m2.add(button2)
+        button2.bind("<Button-1>", wbuttonm)
+        m2.pack()
+
+        ws = Scale(mea, from_=0, to=200, orient=HORIZONTAL)
+        ws.set(50)
+        m2.add(ws)
+
+        def wbuttonM(event):
+            ff = ws.get()+1
+            ws.set(ff)
+            print(ws.get())
+
+        button = ttk.Button(mea, text='>', width=25)
+        m2.add(button)
+        button.bind("<Button-1>", wbuttonM)
+        m2.pack()
+        '''
 
         def wselect(event):
             selected_item = combo_box.get()
             label.config(text="Selected Item: " + selected_item)
             self.working_measure = combo_box.get()
-            mea.quit()
+            mea.destroy()
+            self.main_screen()
 
         # Create a label
         label = tkinter.Label(mea, text="Selected Item: ")
