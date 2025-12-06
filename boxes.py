@@ -1,8 +1,10 @@
 class draggableArea:
     boxes = []
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, unit, width, height):
+        self.unit = unit
+        self.width = width
+        self.height = height
 
     def newBox(self, x, y, name, oX, oY,):
         box = dragBox(x, y, name, oX, oY, self)

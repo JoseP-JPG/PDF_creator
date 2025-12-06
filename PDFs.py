@@ -87,7 +87,7 @@ class pdfMaker:
                 self.paper_measure.append(selected_item1)
                 self.paper_measure.append(int(selected_item2))
                 self.paper_measure.append(int(selected_item3))
-                self.area = draggableArea(self.paper_measure[1], self.paper_measure[2])
+                self.area = draggableArea(self.paper_measure[0], self.paper_measure[1], self.paper_measure[2])
                 pap.destroy()
                 #print(self.paper_measure)
                 self.working_measurements()
