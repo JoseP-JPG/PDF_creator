@@ -4,13 +4,13 @@ from tkinter import ttk
 from tkinter.ttk import Combobox
 from tkinter import Tk, font
 
-from boxes import draggableArea
+from PDFsBackend import PDFsBackend
 
 
 class pdfMaker:
 
     def __init__(self):
-        self.area = None
+        self.PdF = PDFsBackend()
         self.paper_measure = []
         self.working_measure = ' '
 
@@ -32,11 +32,12 @@ class pdfMaker:
 
     def main_screen(self):
         print('main window')
-        self.area.newBox(0, 0, 'box'+str((len(self.area.boxes)+1)), 'left', 'top')
-        current_box= self.area.boxes[0].name
+
+        self.PdF.area.newBox(0, 0, 'box1', 'left', 'top')
+        current_box= self.PdF.area.boxes[0].name
         mai = tkinter.Tk()
 
-        pw1 = PanedWindow(mai)
+        pw1 = Frame(mai)
         pw1.grid(column=0, row=0, columnspan=2, rowspan=3)
         nameBox = Entry(pw1)
         nameBox.insert(0, current_box)
@@ -45,18 +46,22 @@ class pdfMaker:
         button_newbox.grid(row=1, column=0, columnspan=2)
         button_removebox = ttk.Button(pw1, text='Remove Box')
         button_removebox.grid(row=2, column=0, columnspan=2)
-        
+
 
         def box_list(event):
             print('box chosen')
 
-        pw2 = PanedWindow(mai)
+        pw2 = Frame(mai)
         pw2.grid(column=0, row=3, columnspan=2, rowspan=5)
-        pw3 = PanedWindow(mai)
+        listOfBoxes = Listbox(pw2)
+        listOfBoxes.insert(0, current_box)
+        listOfBoxes.pack()
+        pw3 = Frame(mai)
         pw3.grid(column=2, row=0, columnspan=9, rowspan=2)
         textBox = Text(pw3)
-        textBox.insert(INSERT, current_box)
-        textBox.grid(row=0, column=0, columnspan=9, rowspan=2, sticky="nsew")
+        textBox.insert(INSERT, 'Text')
+        textBox.grid(row=0, column=0, sticky="nsew")
+
         pw4 = PanedWindow(mai)
         pw4.grid(column=2, row=3, columnspan=4, rowspan=5)
         pw5 = PanedWindow(mai)
@@ -97,7 +102,7 @@ class pdfMaker:
                 self.paper_measure.append(selected_item1)
                 self.paper_measure.append(int(selected_item2))
                 self.paper_measure.append(int(selected_item3))
-                self.area = draggableArea(self.paper_measure[0], self.paper_measure[1], self.paper_measure[2])
+                self.PdF.areaMaker(self.paper_measure[0], self.paper_measure[1], self.paper_measure[2])
                 pap.destroy()
                 #print(self.paper_measure)
                 self.working_measurements()
