@@ -10,9 +10,6 @@ class draggableArea:
         box = dragBox(x, y, name, oX, oY)
         self.boxes.append(box)
 
-
-
-
 class dragBox:
 
     def __init__(self, posX, posY, name,oX, oY):
@@ -29,6 +26,11 @@ class dragBox:
     def __str__(self):
         return f"{self.name}"
 
+    def nameGetter(self):
+        return self.name
+
+    def nameSetter(self, name):
+        self.name = name
 
 #if __name__ == '__main__':
 #    drag = draggableArea()
