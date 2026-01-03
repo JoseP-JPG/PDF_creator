@@ -56,6 +56,7 @@ class pdfMaker:
         listOfBoxes = Listbox(pw2)
         listOfBoxes.insert(0, current_box)
         listOfBoxes.pack()
+
         pw3 = Frame(mai)
         pw3.grid(column=2, row=0, columnspan=9, rowspan=2)
         textBox = Text(pw3)
@@ -106,6 +107,7 @@ class pdfMaker:
                 pap.destroy()
                 #print(self.paper_measure)
                 self.working_measurements()
+
             except:
                 self.HtML.paperClear()
                 label.config(text="""The measurements were not numbers.

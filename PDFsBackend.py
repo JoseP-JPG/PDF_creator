@@ -7,5 +7,8 @@ class PDFsBackend:
     def areaMaker(self, argument):
         self.area = draggableArea(argument[0], argument[1], argument[2])
 
+    def boxesGiver(self):
+        return self.area.boxes
+
     def lengthGiver(self):
         return len(self.area.boxes)
