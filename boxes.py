@@ -19,9 +19,9 @@ class dragBox:
         self.name = name
         self.orientationX = oX
         self.orientationY = oY
-        self.text = ' '
-        self.font = ' '
-        self.size = ' '
+        self.text = None
+        self.font = None
+        self.size = None
 
     def __str__(self):
         return f"{self.name}"
@@ -31,6 +31,12 @@ class dragBox:
 
     def nameSetter(self, name):
         self.name = name
+
+    def textSetter(self, text):
+        self.text = text
+
+    def fontSetter(self, font):
+        self.font = font
 
 #if __name__ == '__main__':
 #    drag = draggableArea()

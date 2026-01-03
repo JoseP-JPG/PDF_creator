@@ -59,6 +59,7 @@ class pdfMaker:
 
         pw3 = Frame(mai)
         pw3.grid(column=1, row=0)
+
         textBox = Text(pw3)
         textBox.insert(INSERT, 'Text')
         textBox.pack()
@@ -109,17 +110,24 @@ class pdfMaker:
         def selectTheFont(event):
             Selected = [listOfFonts.get(i) for i in listOfFonts.curselection()]
             print(Selected[0])
-            self.HtML.setFont(Selected[0])
+            self.PdF.area.boxes[current_box].fontSetter(Selected[0])
             searchBox.delete(0, 'end')
             searchBox.insert(0, Selected[0])
             listOfFonts.delete(0, 'end')
             for font2 in fonts:
                 listOfFonts.insert(END, font2)
 
+        def saveText(event):
+            self.PdF.area.boxes[current_box].textSetter(textBox.get('1.0', 'end' + "-1c"))
+            print(self.PdF.area.boxes[current_box].text)
+
+
         nameBox_sv.trace_add("write", nameChange)
         searchBox_sv.trace_add("write", fontSearch)
         button_newbox.bind("<Button-1>", newBoxOnList)
+        textBox.bind('<KeyRelease>', saveText)
         listOfFonts.bind('<<ListboxSelect>>', selectTheFont)
+        '''listOfBoxes.bind('<<ListboxSelect>>', swapBox)'''
 
         mai.title("Create the .PDF")
         mai.mainloop()
