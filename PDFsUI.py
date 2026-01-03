@@ -10,9 +10,9 @@ from boxes import draggableArea
 class pdfMaker:
 
     def __init__(self):
+        self.area = None
         self.paper_measure = []
         self.working_measure = ' '
-        self.area = ''
 
         self.html_component1 = ' '
         self.html_component2 = ' '
@@ -32,27 +32,37 @@ class pdfMaker:
 
     def main_screen(self):
         print('main window')
+        self.area.newBox(0, 0, 'box'+str((len(self.area.boxes)+1)), 'left', 'top')
+        current_box= self.area.boxes[0].name
         mai = tkinter.Tk()
 
         pw1 = PanedWindow(mai)
-        pw1.grid(column=0, row=0, columnspan=2, rowspan=2)
-        button_newbox = ttk.Button(mai, text='New Box')
-        button_newbox.grid(row=0, column=0, columnspan=2)
-        button_removebox = ttk.Button(mai, text='Remove Box')
-        button_removebox.grid(row=1, column=0, columnspan=2)
+        pw1.grid(column=0, row=0, columnspan=2, rowspan=3)
+        nameBox = Entry(pw1)
+        nameBox.insert(0, current_box)
+        nameBox.grid(row=0, column=0, columnspan=2)
+        button_newbox = ttk.Button(pw1, text='New Box')
+        button_newbox.grid(row=1, column=0, columnspan=2)
+        button_removebox = ttk.Button(pw1, text='Remove Box')
+        button_removebox.grid(row=2, column=0, columnspan=2)
+        
 
         def box_list(event):
             print('box chosen')
 
         pw2 = PanedWindow(mai)
-        pw2.grid(column=0, row=2, columnspan=2, rowspan=5)
+        pw2.grid(column=0, row=3, columnspan=2, rowspan=5)
         pw3 = PanedWindow(mai)
-        pw3.grid(column=2, row=0, columnspan=8, rowspan=2)
+        pw3.grid(column=2, row=0, columnspan=9, rowspan=2)
+        textBox = Text(pw3)
+        textBox.insert(INSERT, current_box)
+        textBox.grid(row=0, column=0, columnspan=9, rowspan=2, sticky="nsew")
         pw4 = PanedWindow(mai)
-        pw4.grid(column=2, row=2, columnspan=4, rowspan=5)
+        pw4.grid(column=2, row=3, columnspan=4, rowspan=5)
         pw5 = PanedWindow(mai)
-        pw5.grid(column=5, row=2, columnspan=4, rowspan=5)
+        pw5.grid(column=5, row=3, columnspan=5, rowspan=5)
 
+        mai.title("Create the .PDF")
         mai.mainloop()
 
     def newbox_screen(self):

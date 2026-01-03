@@ -7,7 +7,7 @@ class draggableArea:
         self.height = height
 
     def newBox(self, x, y, name, oX, oY,):
-        box = dragBox(x, y, name, oX, oY, self)
+        box = dragBox(x, y, name, oX, oY)
         self.boxes.append(box)
 
 
@@ -15,14 +15,13 @@ class draggableArea:
 
 class dragBox:
 
-    def __init__(self, posX, posY, name,oX, oY, area):
+    def __init__(self, posX, posY, name,oX, oY):
 
         self.posX = posX
         self.posY = posY
         self.name = name
         self.orientationX = oX
         self.orientationY = oY
-        self.parentDrag = area
         self.text = ' '
         self.font = ' '
         self.size = ' '

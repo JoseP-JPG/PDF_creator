@@ -1,6 +1,6 @@
 import boxes
-import PDFs
-from PDFs import pdfMaker
+import PDFsUI
+from PDFsUI import pdfMaker
 import webbrowser
 
 def print_hi(name):
