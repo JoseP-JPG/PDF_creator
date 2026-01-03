@@ -4,6 +4,7 @@ from tkinter import ttk
 from tkinter.ttk import Combobox
 from tkinter import Tk, font
 
+from HTMLsBackend import HTMLsBackend
 from PDFsBackend import PDFsBackend
 
 
@@ -11,8 +12,7 @@ class pdfMaker:
 
     def __init__(self):
         self.PdF = PDFsBackend()
-        self.paper_measure = []
-        self.working_measure = ' '
+        self.HtML = HTMLsBackend()
 
         self.html_component1 = ' '
         self.html_component2 = ' '
@@ -99,15 +99,15 @@ class pdfMaker:
             try:
                 label.config(text="Selected Item: " + selected_item1)
 
-                self.paper_measure.append(selected_item1)
-                self.paper_measure.append(int(selected_item2))
-                self.paper_measure.append(int(selected_item3))
-                self.PdF.areaMaker(self.paper_measure[0], self.paper_measure[1], self.paper_measure[2])
+                self.HtML.paperInserter(selected_item1)
+                self.HtML.paperInserter(int(selected_item2))
+                self.HtML.paperInserter(int(selected_item3))
+                self.PdF.areaMaker(self.HtML.paperGiver())
                 pap.destroy()
                 #print(self.paper_measure)
                 self.working_measurements()
             except:
-                self.paper_measure.clear()
+                self.HtML.paperClear()
                 label.config(text="""The measurements were not numbers.
                 Selected Item: """ + selected_item1)
 
