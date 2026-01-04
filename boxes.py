@@ -12,7 +12,7 @@ class draggableArea:
 
 class dragBox:
 
-    def __init__(self, posX, posY, name,oX, oY):
+    def __init__(self, posX, posY, name, oX, oY):
 
         self.posX = posX
         self.posY = posY

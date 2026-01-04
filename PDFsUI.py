@@ -14,13 +14,6 @@ class pdfMaker:
         self.PdF = PDFsBackend()
         self.HtML = HTMLsBackend()
 
-        self.html_component1 = ' '
-        self.html_component2 = ' '
-        self.html_component3 = ' '
-        self.css_component1 = ' '
-        self.css_component2 = ' '
-        self.css_component3 = ' '
-
         self.open_screen()
 
     def html_maker(self):
@@ -55,7 +48,7 @@ class pdfMaker:
         pw2.grid(column=0, row=1)
         listOfBoxes = Listbox(pw2, selectmode=SINGLE)
         listOfBoxes.insert(0, self.PdF.area.boxes[0].name)
-        listOfBoxes.pack()
+        listOfBoxes.pack(side=BOTTOM)
 
         pw3 = Frame(mai)
         pw3.grid(column=1, row=0)
